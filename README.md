@@ -17,4 +17,7 @@
     Deployment: GitHub Pages + WebAssembly
 
 
+## 🌐 Live Demo
+You can use the tool directly here: [https://alexisyz.github.io/PocketWallet/](https://alexisyz.github.io/PocketWallet/)
+
 By Navi Collective
