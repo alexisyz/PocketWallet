@@ -1,0 +1,15 @@
+{
+  "name": "pocket-wallet",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "pocket_wallet_bg.wasm",
+    "pocket_wallet.js",
+    "pocket_wallet.d.ts"
+  ],
+  "main": "pocket_wallet.js",
+  "types": "pocket_wallet.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
