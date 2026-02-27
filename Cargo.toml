@@ -1,0 +1,14 @@
+[package]
+name = "pocket-wallet"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"] # Esto es vital para WASM
+
+[dependencies]
+argon2 = "0.5"
+tiny-bip39 = { version = "1.0", default-features = false }
+wasm-bindgen = "0.2"
+getrandom = { version = "0.2", features = ["js"] }
+zeroize = { version = "1.8", features = ["derive"] }

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POCKET WALLET</title>
+    <style>
+        body { 
+            background: #0d1117; 
+            color: #c9d1d9; 
+            font-family: 'Courier New', Courier, monospace; 
+            max-width: 600px; 
+            margin: 4rem auto; 
+            padding: 20px;
+            border: 1px solid #30363d;
+        }
+        h2 { border-bottom: 1px solid #30363d; padding-bottom: 10px; font-size: 1.2rem; }
+        .input-group { margin: 20px 0; }
+        label { display: block; margin-bottom: 5px; font-size: 0.9rem; color: #8b949e; }
+        input { 
+            width: 100%; 
+            background: #161b22; 
+            border: 1px solid #30363d; 
+            color: #c9d1d9; 
+            padding: 8px; 
+            box-sizing: border-box;
+            outline: none;
+        }
+        input:focus { border-color: #58a6ff; }
+        button { 
+            background: #21262d; 
+            color: #c9d1d9; 
+            border: 1px solid #30363d; 
+            padding: 10px 20px; 
+            cursor: pointer; 
+            width: 100%;
+            font-family: inherit;
+        }
+        button:hover { background: #30363d; }
+        #output-container { 
+            margin-top: 30px; 
+            padding: 15px; 
+            border: 1px dashed #30363d; 
+            display: none; 
+        }
+        .label-output { color: #58a6ff; font-weight: bold; margin-bottom: 10px; display: block; }
+        #phrase { line-height: 1.6; word-spacing: 5px; }
+    </style>
+</head>
+<body>
+    <h2>POCKET WALLET: Brainwallet 24 Words</h2>
+    
+    <div class="input-group">
+        <label>1. Password:</label>
+        <input type="password" id="pass" spellcheck="false">
+    </div>
+    
+    <div class="input-group">
+        <label>2. Salt (extra password):</label>
+        <input type="text" id="salt" spellcheck="false">
+    </div>
+    
+    <div class="input-group">
+        <label>3. complexity (MB):</label>
+        <input type="number" id="mem" value="64">
+    </div>
+
+    <button id="exec-btn">Execute Process</button>
+
+    <div id="output-container">
+        <span class="label-output">24 WORDS::</span>
+        <p id="phrase"></p>
+    </div>
+
+    <script type="module">
+        import init, { process_keys } from './pkg/pocket_wallet.js';
+
+        async function start() {
+            await init();
+
+            document.getElementById('exec-btn').onclick = () => {
+                const p = document.getElementById('pass').value;
+                const s = document.getElementById('salt').value;
+                const m = parseInt(document.getElementById('mem').value);
+                
+                if(!p || !s) { alert("Missing data"); return; }
+
+                const result = process_keys(p, s, m);
+                
+                document.getElementById('output-container').style.display = 'block';
+                document.getElementById('phrase').innerText = result;
+            };
+        }
+        start();
+    </script>
+</body>
+</html>
